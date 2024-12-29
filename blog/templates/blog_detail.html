@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow">
+        {% if blog.photo %}
+            <img src="{{ blog.photo.url }}" class="card-img-top" alt="blog image">
+        {% else %}
+            <img src="{% static 'photos/pexels-no_photo.jpg' %}" class="card-img-top" alt="default image">
+        {% endif %}
+        
+        <div class="card-body">
+            <h2 class="card-title">{{ blog.title }}</h2>
+            <p class="text-muted">
+                By <strong>{{ blog.user.username }}</strong>, 
+                <small>{{ blog.created_at|rounded_time }}</small>
+            </p>
+            <hr>
+            <p class="card-text">{{ blog.content }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

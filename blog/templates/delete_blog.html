@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+BlogAPP
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center"> Welcome to Annita's BlogApp</h1>
+<a href="{% url 'Create_Blog' %}" class="btn btn-warning mt-2">Create a Blog</a>
+
+<div class="container my-5 w-75 d-flex justify-content-center flex-column">
+    <h3 class="text-center">Are you sure to delete this blog <span class="text-warning">"{{ blog.title }}"?</span></h3>
+    <div class="mt-3 w-75 d-flex justify-content-end">
+        <form method="POST">
+            {% csrf_token %}
+            <a href="{% url 'all_blogs'%}" class="btn btn-secondary me-2">Cancel</a>
+            <button class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+    
+</div>
+
+{% endblock %}

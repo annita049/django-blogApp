@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import Blog
-from .forms import BlogForm
+from .forms import BlogForm, UserRegistrationForm
 from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 # Create your views here.
 
 def index(request):
@@ -11,6 +13,7 @@ def All_Blogs(request):
     blogs = Blog.objects.all().order_by('-created_at')
     return render(request, 'all_blogs.html', {'blogs': blogs})
 
+@login_required
 def Create_Blog(request):
     if request.method == 'POST':
         form = BlogForm(request.POST, request.FILES)
@@ -26,6 +29,7 @@ def Create_Blog(request):
         form = BlogForm()
     return render(request, 'blog_form.html', {'form': form})
 
+@login_required
 def Edit_Blog(request, blog_id):
     blog = get_object_or_404(Blog, pk= blog_id, user = request.user)
     if request.method == 'POST':
@@ -39,11 +43,30 @@ def Edit_Blog(request, blog_id):
         form = BlogForm(instance=blog)
     return render(request, 'blog_form.html', {'form': form})
 
+@login_required
 def Delete_Blog(request, blog_id):
     blog = get_object_or_404(Blog, pk= blog_id, user=request.user)
     if request.method == 'POST':
         blog.delete()
         return redirect('all_blogs')
-    return render(request, 'blog_delete', {'blog': blog})
+    return render(request, 'delete_blog.html', {'blog': blog})
 
+
+def blog_detail(request, blog_id):
+    blog = get_object_or_404(Blog, pk=blog_id, user=request.user)
+    return render(request, 'blog_detail.html', {'blog': blog})
+
+
+def Register(request):
+    if request.method == "POST":
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password1'])
+            user.save()
+            login(request, user)
+            return redirect('all_blogs')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'registration/register.html', {'form': form})
     

@@ -5,10 +5,9 @@ BlogAPP
 {% endblock %}
 
 {% block content %}
-<h1 class="text-center"> Welcome to Annita's BlogApp</h1>
-<h2>
-    {% if form.instance.pk %} Edit Blog
-    {% else %} Create a Blog
+<div class="container w-50">
+    {% if form.instance.pk %} <h1 class="text-center">Edit Blog</h1>
+    {% else %} <h1 class="text-center">Create a Blog</h1>
     {% endif %}
 
     <form method="POST" enctype="multipart/form-data" class="form">
@@ -16,5 +15,5 @@ BlogAPP
         {{ form.as_p }}
         <button class="btn btn-warning" type="submit">Save</button>
     </form>
-</h2>
+</div>
 {% endblock %}
