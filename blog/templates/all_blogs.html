@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+BlogAPP
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center"> Welcome to Annita's BlogApp</h1>
+<a href="{% url 'Create_Blog' %}" class="btn btn-warning mt-2">Create a Blog</a>
+
+<div class="container row gap-3 mt-4">
+    {% for blog in blogs %}
+        <div class="card" style="width: 18rem;">
+            {% if blog.photo %}
+            <img src="{{ blog.photo.url }}" class="card-img-top h-100 w-100" style="object-fit: cover; height: 200px;" alt="blog photo">
+            {% else %}
+                <img src="media/photos/pexels-no_photo.jpg" class="card-img-top h-100 w-100" style="object-fit: cover; height: 200px;" alt="Default Image">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{blog.user.username}}</h5>
+                <p class="card-text">{{blog.text}}</p>
+                <a href="{% url 'Edit_Blog' blog.id %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'Delete_Blog' blog.id %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
