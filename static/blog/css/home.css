@@ -5,9 +5,6 @@
     margin: 0;
 }
 
-.card {
-    z-index: -1;
-}
 
 .card-text {
     padding: 0 15px;
