@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 
+{% load static %}
 {% block title %}
 BlogAPP
 {% endblock %}
@@ -11,19 +12,23 @@ BlogAPP
 <div class="container my-5">
     <div class="row gx-5 gy-5">
         {% for blog in blogs %}
-        <div class="col-4">
+        <div class="col-xl-4 col-lg-6 col-12">
             <div class="card shadow-sm h-100 w-100 g-*">
-                {% if blog.photo %}
-                    <img src="{{ blog.photo.url }}" class="card-img-top" alt="default image">
-                {% else %}
-                    <img src="media/photos/pexels-no_photo.jpg" class="card-img-top" alt="default image">
-                {% endif %}
+                <div class="card-image-container">
+                    {% if blog.photo %}
+                        <img src="{{ blog.photo.url }}" class="card-img-top" alt="default image">
+                    {% else %}
+                        <img src="media/photos/pexels-no_photo.jpg" class="card-img-top" alt="default image">
+                    {% endif %}
+                </div>
                 
-                {% comment %} <span class="badge bg-primary mb-2">{{ blog.category }}</span> {% endcomment %}
-                <h4 class="card-title ms-2 mt-3">{{ blog.title }}</h4>
-                <p class="card-text ms-2 mt-2">{{ blog.content | truncatewords:18 }}</p>
+                {% comment %} <span class="badge bg-primary mb-2">Health</span> {% endcomment %}
+                <div class="">
+                    <div class="card-title bg-warning text-center">{{ blog.title }}</div>
+                    <p class="card-text mt-2">{{ blog.content }}</p>
+                </div>
                 <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div class="d-flex align-items-center my-3">
+                    <div class="d-flex align-items-center mt-1 mb-3">
                         <img src="https://via.placeholder.com/40" alt="User Image" class="rounded-circle ms-2 me-2" width="40" height="40">
                         <div>
                             <h6 class="mb-0">{{ blog.user.username }}</h6>
@@ -31,9 +36,18 @@ BlogAPP
                             <small class="text-muted">{{ blog.created_at | rounded_time }}</small>
                         </div>
                     </div>
-                    <a href="{% url 'edit_blog' blog_id=blog.id %}" class="btn btn-success btn-sm me-3">Edit</a>
-                    <a href="{% url 'delete_blog' blog_id=blog.id %}" class="btn btn-danger btn-sm me-3">Delete</a>
-                    <a href="#" class="btn btn-primary btn-sm me-3">Read</a>
+                    
+                    {% if blog.user == user %}
+                    <div class="w-50 d-flex justify-content-end me-2">
+                        <a href="{% url 'edit_blog' blog_id=blog.id %}" class="clickable-icons text-decoration-none me-2">
+                            <img src="{% static 'blog/icons/edit.png' %}" width="30" height="30">
+                        </a>
+                        <a href="{% url 'delete_blog' blog_id=blog.id %}" class="clickable-icons text-decoration-none me-2">
+                            <img src="{% static 'blog/icons/delete.png' %}" width="27" height="27">
+                        </a>
+                        {% comment %} <a href="#" class="btn btn-primary btn-sm me-3">Read</a> {% endcomment %}
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
