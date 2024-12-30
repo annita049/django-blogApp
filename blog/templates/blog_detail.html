@@ -1,22 +1,109 @@
 {% extends "layout.html" %}
+{% load static %}
+{% load rounded_time %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="card shadow">
+{% comment %} <div class="container mt-5">
+    <!-- Blog Card -->
+    <div class="blog-card shadow-lg">
+        
+        <!-- Blog Image (Responsive & Big Height) -->
         {% if blog.photo %}
-            <img src="{{ blog.photo.url }}" class="card-img-top" alt="blog image">
+            <img src="{{ blog.photo.url }}" class="card-img-top" alt="Blog Image" style="height: 400px; object-fit: cover;">
         {% else %}
-            <img src="{% static 'photos/pexels-no_photo.jpg' %}" class="card-img-top" alt="default image">
+            <img src="{% static 'photos/pexels-no_photo.jpg' %}" class="card-img-top" alt="No Image Available" style="height: 400px; object-fit: cover;">
         {% endif %}
         
-        <div class="card-body">
-            <h2 class="card-title">{{ blog.title }}</h2>
+        <div class="blog-body">
+            <!-- Blog Title -->
+            <h2 class="blog-title">{{ blog.title }}</h2>
+            
+            <!-- Author and Date with Icons -->
             <p class="text-muted">
-                By <strong>{{ blog.user.username }}</strong>, 
-                <small>{{ blog.created_at|rounded_time }}</small>
+                <i class="fas fa-user"></i> <strong>{{ blog.user.username }}</strong> &nbsp;
+                <i class="fas fa-calendar-alt"></i> <small>{{ blog.created_at|formatted_date }}</small>
             </p>
+            
             <hr>
-            <p class="card-text">{{ blog.content }}</p>
+            
+            <!-- Blog Content -->
+            <p class="blog-content">{{ blog.content }}</p>
+        </div>
+
+        <!-- Social Media Panel -->
+        <div class="blog-footer text-center">
+            <h5>Follow {{ blog.user.username }} on Social Media</h5>
+            <a href="https://www.facebook.com/{{ blog.user.username }}" class="btn btn-primary" target="_blank">
+                <i class="fab fa-facebook"></i> Facebook
+            </a>
+            <a href="https://twitter.com/{{ blog.user.username }}" class="btn btn-info" target="_blank">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+            <a href="https://www.instagram.com/{{ blog.user.username }}" class="btn btn-danger" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://www.linkedin.com/in/{{ blog.user.username }}" class="btn btn-secondary" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+<div class="container mt-5">
+    <!-- Blog Card -->
+    <div class="card shadow-lg blog-card">
+        
+        <!-- Blog Image (Responsive & Big Height) -->
+        {% if blog.photo %}
+            <img src="{{ blog.photo.url }}" class="card-img-top blog-img" alt="Blog Image">
+        {% else %}
+            <img src="{% static 'photos/pexels-no_photo.jpg' %}" class="card-img-top blog-img" alt="No Image Available">
+        {% endif %}
+        
+        <div class="blog-body">
+            <!-- Blog Title -->
+            <h2 class="display-6 blog-title">{{ blog.title }}</h2>
+            
+            <!-- Author and Date with Icons -->
+            <div class="blog-meta border-bottom pb-2 mb-3" style="max-width: 1800px;">
+                <div class="row">
+                    <div class="col-md-8 mt-2">
+                        <img src="{% static 'blog/images/pexels-imudrunk.jpg' %}" alt="Profile Picture" 
+                            class="rounded-circle me-1" width="45" height="45">
+                        <strong class="me-5">{{ blog.user.username }}</strong>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="my-1">
+                        <img src="{% static 'blog/icons/clock.png' %}" class="me-2" width="20" height="20" alt="Date:"> <span>{{ blog.created_at|formatted_date }}</span>
+                        </div>
+                        <div>
+                        <img src="{% static 'blog/icons/open-book.png' %}" class="me-2" width="20" height="20" alt="Read:">
+                        <span>{{ blog.read_count }} 58 Reads</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Blog Content -->
+            <p class="card-text blog-content">{{ blog.content }}</p>
+        </div>
+
+        <!-- Social Media Panel -->
+        <div class="card-footer text-center blog-footer">
+            <div class="lead mb-3">Follow <span>{{ blog.user.username }}</span> on Social Media</div>
+
+            <a href="https://www.facebook.com/{{ blog.user.username }}" class="blog-social-btn" target="_blank" id="facebook">
+                <i class="blog-read fab fa-facebook fa-2x"></i>
+            </a>
+            <a href="https://twitter.com/{{ blog.user.username }}" class="blog-social-btn" target="_blank" id="twitter">
+                <i class="blog-read fab fa-twitter fa-2x"></i>
+            </a>
+            <a href="https://www.instagram.com/{{ blog.user.username }}" class="blog-social-btn" target="_blank" id="instagram">
+                <i class="blog-read fab fa-instagram fa-2x"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/{{ blog.user.username }}" class="blog-social-btn" target="_blank" id="linkedin">
+                <i class="blog-read fab fa-linkedin fa-2x"></i>
+            </a>
         </div>
     </div>
 </div>
