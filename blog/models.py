@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=240, default="Blog Post")
+    title = models.CharField(max_length=240, default="")
     content = models.TextField(null=True, blank=True)
     photo = models.ImageField(upload_to='photos/', blank=True, null=True, default='photos/pexels-no_photo.jpg')
     created_at = models.DateTimeField(auto_now_add=True)
