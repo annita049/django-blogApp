@@ -53,7 +53,7 @@ def Delete_Blog(request, blog_id):
 
 
 def blog_detail(request, blog_id):
-    blog = get_object_or_404(Blog, pk=blog_id, user=request.user)
+    blog = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'blog_detail.html', {'blog': blog})
 
 
@@ -69,4 +69,14 @@ def Register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+def my_blogs(request):
+    if request.user.is_authenticated:
+        blogs = Blog.objects.filter(user=request.user)
+        return render(request, 'my_blogs.html', {'blogs': blogs})
+    else:
+        return redirect('login')
+
+
     
