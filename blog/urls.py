@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:blog_id>/delete/', views.Delete_Blog, name='delete_blog'),
     path('<int:blog_id>/detail/', views.blog_detail, name='blog_detail'),
     path('register/', views.Register, name='register'),
+    path('myblogs/', views.my_blogs, name='my_blogs'),
 ]
