@@ -1,0 +1,34 @@
+{% extends "guest_layout.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6 login-side-image">
+                <img src="{% static 'blog/images/pexels-cottonbro.jpg' %}" style="max-width: 700px;" alt="not">
+            </div>
+            <div class="col-md-6 login-form">
+                 <div class="container" style="max-width: 450px">
+                    <h2 class="display-3 my-5"> User Login </h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% comment %} {{ form.as_p }} {% endcomment %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="error">
+                                        {{ field.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <button class="btn btn-primary">Login</button>
+                    </form>
+                    <p class="text-center mt-3">Don't have an account? <a href="{% url 'register' %}">Regiter</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock  %}
