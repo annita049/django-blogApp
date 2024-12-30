@@ -1,0 +1,33 @@
+* {
+    font-family: "Poppins", serif;
+    font-weight: 300;
+    padding: 0;
+    margin: 0;
+}
+
+.card {
+    z-index: -1;
+}
+
+.card-text {
+    padding: 0 15px;
+    height: 60px;
+    font-size: 14px;
+    overflow-wrap: break-word; 
+    overflow: hidden;
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 200px;
+    background-color: black;
+}
+
+.card-title {
+    background-color: #ffbe44 !important;
+    text-align: center;
+    height: 35px;
+    padding: 3px 12px;
+    font-size: 19px;
+    overflow: hidden;
+}
