@@ -7,13 +7,13 @@ BlogAPP
 {% block content %}
 <div class="container w-50">
     {% if form.instance.pk %} <h1 class="text-center">Edit Blog</h1>
-    {% else %} <h1 class="text-center">Create a Blog</h1>
+    {% else %} <h1 class="display-4 my-2 text-center">Create a Blog</h1>
     {% endif %}
 
     <form method="POST" enctype="multipart/form-data" class="form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-warning" type="submit">Save</button>
+        <button class="btn btn-save-blog btn-warning" type="submit">Save</button>
     </form>
 </div>
 {% endblock %}
