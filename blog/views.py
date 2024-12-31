@@ -48,12 +48,27 @@ def Delete_Blog(request, blog_id):
     blog = get_object_or_404(Blog, pk= blog_id, user=request.user)
     if request.method == 'POST':
         blog.delete()
-        return redirect('all_blogs')
+        return redirect('my_blogs')
     return render(request, 'delete_blog.html', {'blog': blog})
 
 
+# def blog_detail(request, blog_id):
+#     blog = get_object_or_404(Blog, pk=blog_id)
+#     return render(request, 'blog_detail.html', {'blog': blog})
+
 def blog_detail(request, blog_id):
-    blog = get_object_or_404(Blog, pk=blog_id)
+    blog = get_object_or_404(Blog, id=blog_id)
+
+    if request.user.is_authenticated:
+        # Get the session key for tracking reads
+        read_key = f'has_read_{blog.id}'
+
+        # Check if the user has already read this blog
+        if not request.session.get(read_key, False):
+            blog.read_count += 1
+            blog.save()
+            request.session[read_key] = True  # Mark as read
+
     return render(request, 'blog_detail.html', {'blog': blog})
 
 
