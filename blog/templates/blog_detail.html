@@ -4,11 +4,10 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container">
     <!-- Blog Card -->
     <div class="card shadow-lg blog-card">
         
-        <!-- Blog Image (Responsive & Big Height) -->
         {% if blog.photo %}
             <img src="{{ blog.photo.url }}" class="card-img-top blog-img" alt="Blog Image">
         {% else %}
@@ -40,7 +39,7 @@
             </div>
             
             <!-- Blog Content -->
-            <p class="card-text blog-content">{{ blog.content }}</p>
+            <p class="blog-content">{{ blog.content }}</p>
         </div>
 
         <!-- Social Media Panel -->

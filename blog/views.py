@@ -38,7 +38,7 @@ def Edit_Blog(request, blog_id):
             blog = form.save(commit=False)
             blog.user = request.user
             blog.save()
-            return redirect('all_blogs')
+            return redirect('my_blogs')
     else:
         form = BlogForm(instance=blog)
     return render(request, 'blog_form.html', {'form': form})
