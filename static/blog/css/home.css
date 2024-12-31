@@ -8,8 +8,8 @@
 
 .card-text {
     padding: 0 15px;
-    height: 60px;
-    font-size: 14px;
+    height: 50px;
+    font-size: 15px;
     overflow-wrap: break-word; 
     overflow: hidden;
 }
@@ -26,6 +26,7 @@
     height: 35px;
     padding: 3px 12px;
     font-size: 19px;
+    font-weight: 400;
     overflow: hidden;
 }
 
@@ -177,6 +178,24 @@ footer a:hover {
 
 .blog-read.fa-linkedin {
     color: #0033ac;;
+}
+
+.read-count {
+    font-size: 14px !important;
+    color: #b20159 !important;
+    font-weight: 400 !important;
+}
+
+.blog-author {
+    font-size: 15px;
+    font-weight: 500 !important;
+}
+.blog-timesince {
+    font-size: 13px !important;
+}
+
+.footer-links,.footer-socials,.footer-about p,a {
+    font-size: 14px;
 }
 
 
