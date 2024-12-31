@@ -10,7 +10,8 @@ BlogAPP
 <a href="{% url 'Create_Blog' %}" class="btn btn-warning mt-2">Create a Blog</a> {% endcomment %}
 
 <div class="container my-5">
-    <div class="row gx-5 gy-5">
+    {% if blogs %}
+        <div class="row gx-5 gy-5">
         {% for blog in blogs %}
         <div class="col-xl-4 col-lg-6 col-12">
             <div class="card shadow-sm h-100 w-100 g-*">
@@ -22,7 +23,6 @@ BlogAPP
                     {% endif %}
                 </div>
                 
-                {% comment %} <span class="badge bg-primary mb-2">Health</span> {% endcomment %}
                 <div class="">
                     <div class="card-title bg-warning text-center">{{ blog.title }}</div>
                     <p class="card-text mt-3">{{ blog.content }}</p>
@@ -53,6 +53,14 @@ BlogAPP
         </div>
         {% endfor %}
     </div>
+
+    {% else %}
+    <div class="no-blogs d-flex justify-content-center">
+        <img src="{% static 'blog/icons/—Pngtree—empty box icon blue.png' %}" alt="No blogs yet" class="img-fluid" style="height: 300px; width: 300px;">
+    </div>
+    <div class="text-center text-muted" style="font-size: 40px;">You don't have any blog yet.</div>
+    {% endif %}
+
 </div>
 
 {% endblock %}
