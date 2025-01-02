@@ -22,7 +22,7 @@
             <div class="blog-meta border-bottom pb-2 mb-3" style="max-width: 1800px;">
                 <div class="row">
                     <div class="col-md-8 mt-2">
-                        <img src="{% static 'blog/images/pexels-imudrunk.jpg' %}" alt="Profile Picture" 
+                        <img src="{{blog.user.profile.photo.url}}" alt="Profile Picture" 
                             class="rounded-circle me-1" width="45" height="45">
                         <strong class="me-5">{{ blog.user.username }}</strong>
                     </div>
