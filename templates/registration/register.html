@@ -1,9 +1,21 @@
-{% extends "guest_layout.html" %}
+{% extends "layout.html" %}
+{% load static %}
+
+{% block user_registration_css %}
+    <link rel="stylesheet" href="{% static 'blog/css/user_registration.css' %}">
+{% endblock  %}
+
+{% block navbar %}
+{% endblock  %}
+
+{% block footer %}
+    
+{% endblock  %}
 
 {% block content %}
 
     <div class="container w-50">
-        <h2 class="display-4 my-5 text-center">User Registration</h2>
+        <h2 class="display-4 mt-3 mb-5 text-center">User Registration</h2>
         <form method="POST">
             {% csrf_token %}
             {% comment %} {{ form.as_p }} {% endcomment %}
@@ -18,7 +30,7 @@
                     {% endif %}
                 </div>
             {% endfor %}
-            <button class="btn btn-primary">Register</button>
+            <button class="btn btn-primary mt-3">Register</button>
         </form>
         <p class="text-center mt-3"> Already Have an account? <a href="{% url 'login' %}">Login</a></p>
     </div>

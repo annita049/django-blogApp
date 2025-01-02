@@ -1,5 +1,15 @@
-{% extends "guest_layout.html" %}
+{% extends "layout.html" %}
 {% load static %}
+
+{% block user_registration_css %}
+    <link rel="stylesheet" href="{% static 'blog/css/user_registration.css' %}">
+{% endblock  %}
+
+{% block navbar %}
+{% endblock  %}
+
+{% block footer %}
+{% endblock  %}
 
 {% block content %}
     <div class="container">
@@ -9,7 +19,7 @@
             </div>
             <div class="col-md-6 login-form">
                  <div class="container" style="max-width: 450px">
-                    <h2 class="display-3 my-5"> User Login </h2>
+                    <h2 class="display-3 mt-4 mb-5"> User Login </h2>
                     <form method="POST">
                         {% csrf_token %}
                         {% comment %} {{ form.as_p }} {% endcomment %}
@@ -24,7 +34,7 @@
                                 {% endif %}
                             </div>
                         {% endfor %}
-                        <button class="btn btn-primary">Login</button>
+                        <button class="btn btn-primary my-3">Login</button>
                     </form>
                     <p class="text-center mt-3">Don't have an account? <a href="{% url 'register' %}">Regiter</a></p>
                 </div>
