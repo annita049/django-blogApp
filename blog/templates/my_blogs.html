@@ -1,13 +1,11 @@
 {% extends "layout.html" %}
-
 {% load static %}
+
 {% block title %}
 BlogAPP
 {% endblock %}
 
 {% block content %}
-{% comment %} <h1 class="display-5 text-center"> Welcome to the <span class="text-warning">BlogApp</span></h1>
-<a href="{% url 'Create_Blog' %}" class="btn btn-warning mt-2">Create a Blog</a> {% endcomment %}
 
 <div class="container my-5">
     {% if blogs %}
@@ -18,8 +16,6 @@ BlogAPP
                 <div class="card-image-container">
                     {% if blog.photo %}
                         <img src="{{ blog.photo.url }}" class="card-img-top" alt="default image">
-                    {% else %}
-                        <img src="media/photos/pexels-no_photo.jpg" class="card-img-top" alt="default image">
                     {% endif %}
                 </div>
                 
@@ -29,7 +25,6 @@ BlogAPP
                 </div>
                 <div class="d-flex justify-content-between align-items-center mt-2">
                     <div class="d-flex align-items-center mt-2 mb-3">
-                        {% comment %} <img src="https://via.placeholder.com/40" alt="User Image" class="rounded-circle ms-2 me-2" width="40" height="40"> {% endcomment %}
                         <div>
                             {% load rounded_time %}
                             <small class="text-muted ms-3"><strong>Updated: </strong>
