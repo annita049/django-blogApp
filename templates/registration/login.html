@@ -22,7 +22,6 @@
                     <h2 class="display-3 mt-4 mb-5"> User Login </h2>
                     <form method="POST">
                         {% csrf_token %}
-                        {% comment %} {{ form.as_p }} {% endcomment %}
                         {% for field in form %}
                             <div class="form-group">
                                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
