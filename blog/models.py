@@ -1,11 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
+
+# 3rd party rich text editor
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=240, default="")
-    content = models.TextField(null=True, blank=True)
+    content = RichTextField(),
     photo = models.ImageField(upload_to='photos/',
         blank=True,
         null=True,
